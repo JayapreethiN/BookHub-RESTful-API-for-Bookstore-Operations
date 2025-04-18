@@ -1,0 +1,10 @@
+const users = [];
+
+app.post('/register', express.json(), (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).send('Username and password are required');
+  }
+  users.push({ username, password });
+  res.status(201).send('User registered');
+});

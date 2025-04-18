@@ -1,0 +1,5 @@
+app.get('/search-title/:title', (req, res) => {
+  const title = req.params.title;
+  const booksByTitle = books.filter(b => b.title.toLowerCase().includes(title.toLowerCase()));
+  res.json(booksByTitle);
+});

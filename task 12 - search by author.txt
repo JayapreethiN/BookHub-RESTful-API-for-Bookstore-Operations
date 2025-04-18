@@ -1,0 +1,5 @@
+app.get('/search-author/:author', (req, res) => {
+  const author = req.params.author;
+  const booksByAuthor = books.filter(b => b.author === author);
+  res.json(booksByAuthor);
+});

@@ -1,0 +1,16 @@
+const getBooksAsync = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(books);
+    }, 1000);
+  });
+};
+
+app.get('/async-books', async (req, res) => {
+  try {
+    const booksList = await getBooksAsync();
+    res.json(booksList);
+  } catch (error) {
+    res.status(500).send('Error fetching books');
+  }
+});

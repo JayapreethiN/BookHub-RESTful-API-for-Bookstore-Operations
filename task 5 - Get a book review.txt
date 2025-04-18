@@ -1,0 +1,14 @@
+const reviews = [
+  { isbn: '12345', review: 'Great book, very informative!' },
+  { isbn: '67890', review: 'Not my favorite, but decent.' }
+];
+
+app.get('/book/:isbn/review', (req, res) => {
+  const isbn = req.params.isbn;
+  const review = reviews.find(r => r.isbn === isbn);
+  if (review) {
+    res.json(review);
+  } else {
+    res.status(404).send('No review found for this book');
+  }
+});

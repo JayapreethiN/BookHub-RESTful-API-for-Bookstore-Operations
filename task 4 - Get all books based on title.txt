@@ -1,0 +1,9 @@
+app.get('/books/title/:title', (req, res) => {
+  const title = req.params.title;
+  const booksByTitle = books.filter(b => b.title.toLowerCase().includes(title.toLowerCase()));
+  if (booksByTitle.length > 0) {
+    res.json(booksByTitle);
+  } else {
+    res.status(404).send('No books found with this title');
+  }
+});

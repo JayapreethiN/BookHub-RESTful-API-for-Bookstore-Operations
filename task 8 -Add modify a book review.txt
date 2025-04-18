@@ -1,0 +1,13 @@
+app.post('/book/:isbn/review', express.json(), (req, res) => {
+  const isbn = req.params.isbn;
+  const { review } = req.body;
+  const existingReview = reviews.find(r => r.isbn === isbn);
+  
+  if (existingReview) {
+    existingReview.review = review; // Modify existing review
+    res.send('Review updated');
+  } else {
+    reviews.push({ isbn, review }); // Add new review
+    res.send('Review added');
+  }
+});

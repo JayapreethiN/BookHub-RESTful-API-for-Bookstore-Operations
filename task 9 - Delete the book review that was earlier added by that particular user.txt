@@ -1,0 +1,12 @@
+app.delete('/book/:isbn/review', express.json(), (req, res) => {
+  const isbn = req.params.isbn;
+  const { username } = req.body;
+  const reviewIndex = reviews.findIndex(r => r.isbn === isbn && r.username === username);
+  
+  if (reviewIndex !== -1) {
+    reviews.splice(reviewIndex, 1);
+    res.send('Review deleted');
+  } else {
+    res.status(404).send('Review not found');
+  }
+});
